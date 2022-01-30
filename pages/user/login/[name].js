@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import Password from "../../../components/Input/Password";
 
 export default function Login() {
   const {
@@ -19,13 +20,12 @@ export default function Login() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <p>{name}</p>
-      <input
+      <Password
         {...register("password", { required: true })}
+        error={errors.password}
+        cornerAdornment={<button type="submit">{">"}</button>}
         autoFocus
-        type="password"
-      ></input>
-      <button type="submit">{">"}</button>
-      {errors.password && <p className="error">Please provide a password!</p>}
+      />
     </form>
   );
 }
